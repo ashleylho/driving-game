@@ -25,5 +25,7 @@ function handleKeydown(event) {
     $img.className = 'west';
   }
   if (event.key === ' ') {
+    $img.style.left = data.location.x + 5 + 'px';
+    data.location.x = data.location.x + 5;
   }
 }
