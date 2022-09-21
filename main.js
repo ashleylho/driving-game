@@ -6,7 +6,8 @@ var data = {
   location: {
     x: 0,
     y: 0
-  }
+  },
+  carStarted: false
 };
 
 document.addEventListener('keydown', handleKeydown);
