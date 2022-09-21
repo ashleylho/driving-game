@@ -1,4 +1,5 @@
 var $img = document.querySelector('img');
+var intervalID = null;
 
 var data = {
   direction: 'east',
@@ -25,7 +26,11 @@ function handleKeydown(event) {
     $img.className = 'west';
   }
   if (event.key === ' ') {
-    $img.style.left = data.location.x + 5 + 'px';
-    data.location.x = data.location.x + 5;
+    intervalID = setInterval(moveRight, 16);
   }
+}
+
+function moveRight() {
+  $img.style.left = data.location.x + 10 + 'px';
+  data.location.x = data.location.x + 10;
 }
