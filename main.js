@@ -26,8 +26,12 @@ function handleKeydown(event) {
     data.direction = 'west';
     $img.className = 'west';
   }
-  if (event.key === ' ') {
+  if (event.key === ' ' && data.carStarted === false) {
     intervalID = setInterval(moveRight, 16);
+    data.carStarted = true;
+  } else if (event.key === ' ' && data.carStarted === true) {
+    clearInterval(intervalID);
+    data.carStarted = false;
   }
 }
 
