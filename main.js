@@ -22,12 +22,18 @@ function handleKeydown(event) {
   } else if (event.key === 'ArrowRight') {
     data.direction = 'east';
     $img.className = 'east';
+    clearInterval(intervalID);
+    intervalID = setInterval(moveUp, 16);
+    data.carStarted = true;
   } else if (event.key === 'ArrowLeft') {
     data.direction = 'west';
     $img.className = 'west';
   }
+
   if (event.key === ' ' && data.carStarted === false) {
-    intervalID = setInterval(moveRight, 16);
+    if (data.direction === 'east') {
+      intervalID = setInterval(moveRight, 16);
+    }
     data.carStarted = true;
   } else if (event.key === ' ' && data.carStarted === true) {
     clearInterval(intervalID);
@@ -38,4 +44,19 @@ function handleKeydown(event) {
 function moveRight() {
   $img.style.left = data.location.x + 10 + 'px';
   data.location.x = data.location.x + 10;
+}
+
+function moveLeft() {
+  $img.style.left = data.location.x - 10 + 'px';
+  data.location.x = data.location.x - 10;
+}
+
+function moveDown() {
+  $img.style.top = data.location.y + 10 + 'px';
+  data.location.y = data.location.y + 10;
+}
+
+function moveUp() {
+  $img.style.top = data.location.y - 10 + 'px';
+  data.location.y = data.location.y - 10;
 }
