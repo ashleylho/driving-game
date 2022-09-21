@@ -1,8 +1,13 @@
+var $img = document.querySelector('img');
+
 var data = {
-  direction: 'east'
+  direction: 'east',
+  location: {
+    x: 0,
+    y: 0
+  }
 };
 
-var $img = document.querySelector('img');
 document.addEventListener('keydown', handleKeydown);
 
 function handleKeydown(event) {
@@ -18,5 +23,7 @@ function handleKeydown(event) {
   } else if (event.key === 'ArrowLeft') {
     data.direction = 'west';
     $img.className = 'west';
+  }
+  if (event.key === ' ') {
   }
 }
