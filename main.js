@@ -23,16 +23,21 @@ function handleKeydown(event) {
     data.direction = 'east';
     $img.className = 'east';
     clearInterval(intervalID);
-    intervalID = setInterval(moveUp, 16);
+    intervalID = setInterval(moveRight, 16);
     data.carStarted = true;
   } else if (event.key === 'ArrowLeft') {
     data.direction = 'west';
     $img.className = 'west';
+    clearInterval(intervalID);
+    intervalID = setInterval(moveLeft, 16);
+    data.carStarted = true;
   }
 
   if (event.key === ' ' && data.carStarted === false) {
     if (data.direction === 'east') {
       intervalID = setInterval(moveRight, 16);
+    } else if (data.direction === 'west') {
+      intervalID = setInterval(moveLeft, 16);
     }
     data.carStarted = true;
   } else if (event.key === ' ' && data.carStarted === true) {
