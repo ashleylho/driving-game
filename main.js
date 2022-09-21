@@ -22,6 +22,9 @@ function handleKeydown(event) {
   } else if (event.key === 'ArrowDown') {
     data.direction = 'south';
     $img.className = 'south';
+    clearInterval(intervalID);
+    intervalID = setInterval(moveDown, 16);
+    data.carStarted = true;
   } else if (event.key === 'ArrowRight') {
     data.direction = 'east';
     $img.className = 'east';
@@ -43,6 +46,8 @@ function handleKeydown(event) {
       intervalID = setInterval(moveLeft, 16);
     } else if (data.direction === 'north') {
       intervalID = setInterval(moveUp, 16);
+    } else if (data.direction === 'south') {
+      intervalID = setInterval(moveDown, 16);
     }
     data.carStarted = true;
   } else if (event.key === ' ' && data.carStarted === true) {
