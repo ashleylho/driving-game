@@ -16,47 +16,18 @@ function handleKeydown(event) {
   if (event.key === 'ArrowUp') {
     data.direction = 'north';
     $img.className = 'north';
-    clearInterval(intervalID);
-    if (data.carStarted === true) {
-      intervalID = setInterval(moveUp, 16);
-      data.carStarted = true;
-    }
   } else if (event.key === 'ArrowDown') {
     data.direction = 'south';
     $img.className = 'south';
-    clearInterval(intervalID);
-    if (data.carStarted === true) {
-      intervalID = setInterval(moveDown, 16);
-      data.carStarted = true;
-    }
   } else if (event.key === 'ArrowRight') {
     data.direction = 'east';
     $img.className = 'east';
-    clearInterval(intervalID);
-    if (data.carStarted === true) {
-      intervalID = setInterval(moveRight, 16);
-      data.carStarted = true;
-    }
   } else if (event.key === 'ArrowLeft') {
     data.direction = 'west';
     $img.className = 'west';
-    clearInterval(intervalID);
-    if (data.carStarted === true) {
-      intervalID = setInterval(moveLeft, 16);
-      data.carStarted = true;
-    }
   }
-
   if (event.key === ' ' && data.carStarted === false) {
-    if (data.direction === 'east') {
-      intervalID = setInterval(moveRight, 16);
-    } else if (data.direction === 'west') {
-      intervalID = setInterval(moveLeft, 16);
-    } else if (data.direction === 'north') {
-      intervalID = setInterval(moveUp, 16);
-    } else if (data.direction === 'south') {
-      intervalID = setInterval(moveDown, 16);
-    }
+    intervalID = setInterval(move, 16);
     data.carStarted = true;
   } else if (event.key === ' ' && data.carStarted === true) {
     clearInterval(intervalID);
@@ -64,22 +35,18 @@ function handleKeydown(event) {
   }
 }
 
-function moveRight() {
-  $img.style.left = data.location.x + 10 + 'px';
-  data.location.x = data.location.x + 10;
-}
-
-function moveLeft() {
-  $img.style.left = data.location.x - 10 + 'px';
-  data.location.x = data.location.x - 10;
-}
-
-function moveDown() {
-  $img.style.top = data.location.y + 10 + 'px';
-  data.location.y = data.location.y + 10;
-}
-
-function moveUp() {
-  $img.style.top = data.location.y - 10 + 'px';
-  data.location.y = data.location.y - 10;
+function move() {
+  if (data.direction === 'east') {
+    $img.style.left = data.location.x + 10 + 'px';
+    data.location.x = data.location.x + 10;
+  } else if (data.direction === 'west') {
+    $img.style.left = data.location.x - 10 + 'px';
+    data.location.x = data.location.x - 10;
+  } else if (data.direction === 'north') {
+    $img.style.top = data.location.y - 10 + 'px';
+    data.location.y = data.location.y - 10;
+  } else if (data.direction === 'south') {
+    $img.style.top = data.location.y + 10 + 'px';
+    data.location.y = data.location.y + 10;
+  }
 }
