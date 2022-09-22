@@ -27,7 +27,7 @@ function handleKeydown(event) {
     $img.className = 'west';
   }
   if (event.key === ' ' && data.carStarted === false) {
-    intervalID = setInterval(moveRight, 16);
+    intervalID = setInterval(move, 16);
     data.carStarted = true;
   } else if (event.key === ' ' && data.carStarted === true) {
     clearInterval(intervalID);
@@ -35,7 +35,18 @@ function handleKeydown(event) {
   }
 }
 
-function moveRight() {
-  $img.style.left = data.location.x + 10 + 'px';
-  data.location.x = data.location.x + 10;
+function move() {
+  if (data.direction === 'east') {
+    $img.style.left = data.location.x + 10 + 'px';
+    data.location.x = data.location.x + 10;
+  } else if (data.direction === 'west') {
+    $img.style.left = data.location.x - 10 + 'px';
+    data.location.x = data.location.x - 10;
+  } else if (data.direction === 'north') {
+    $img.style.top = data.location.y - 10 + 'px';
+    data.location.y = data.location.y - 10;
+  } else if (data.direction === 'south') {
+    $img.style.top = data.location.y + 10 + 'px';
+    data.location.y = data.location.y + 10;
+  }
 }
